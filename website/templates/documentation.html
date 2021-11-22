@@ -1,12 +1,36 @@
 
             {% include "nav.html" %}
         </div>
-        <div id='content-documentation'>
-            <h1 class='text-3xl'>Documentation</h1>
-            <h2> Articles and resources</h2>
-            <p id='intro-documentation'>
-                Here's a page full of interesting and useful reads and links.
-            </p>
+        <div id='content-resources' class='w-8/12 flex flex-col items-center mt-10'>
+            <div>  
+                <h1 class='text-3xl font-bold'>Resources</h1>
+                <h2 class='text-xl font-semibold'> Articles and links</h2>
+                <p id='intro-resources'>
+                    Here's a page full of interesting and useful reads and links I've stumbled upon in the past.
+                </p>
+            </div>
+            <div>
+                {% for element in links_by_page %}
+                    {%for inner_element in element %}
+                    <div class='link-content bg-gray-50 border-black border-2 w-10/12 m-5 p-5'>
+                        <div class='link-title flex justify-between'>
+                            <h3 class='text-xl font-bold'> {{ inner_element.title }} </h3>
+                            <p> {{ inner_element.date.strftime('%Y-%m-%d') }}</p>
+                        </div>
+                        <hr class='border-black m-2'>
+                        <div class='link-content text-justify'>
+                        {{ inner_element.text[0:200]}}...
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            
+            <div class='flex w-4/6 justify-between'>
+                <a href={{previous_page}}> << Previous page </a>
+                <p>Page {{ page }}</p>
+                <a href={{next_page}}> Next page >> </a> 
+            </div>
         </div>
     </div>
     
