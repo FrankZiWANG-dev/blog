@@ -3,6 +3,8 @@ from .models import Post, Link
 from . import db
 views = Blueprint("views", __name__)
 
+
+
 @views.route("/")
 @views.route("/home")
 def home():
@@ -13,7 +15,6 @@ def about_me():
     return render_template("about-me.html")
 
 @views.route("/posts")
-
 
 def posts():
     posts = Post.query.all()
@@ -53,6 +54,31 @@ def new_post():
         return redirect(url_for('auth.dashboard'))
 
     return render_template("new-post.html")
+
+@views.route("/edit-posts", methods=["GET", "POST"])
+def edit_posts():
+    if request.method == 'POST':
+        title = request.form.get('title')
+        url ='/edit-post?title='+title
+
+        return redirect(url)
+
+    return render_template("edit-posts.html")
+
+@views.route("/edit-post", methods=["GET", "POST"])
+def edit_post():
+    title = request.args.get('title')
+    post = Post.query.filter_by(title="test")
+    if request.method == 'POST':
+        post.title = request.form.get('title')
+        post.content = request.form.get('content')
+        post.image = request.form.get('image')
+        db.session.commit()
+        redirect='/dashboard'
+
+        return redirect(url_for(redirect))
+    
+    return render_template("edit-post.html", former_title=post.title, former_content=post.content, former_image=post.image)
 
 @views.route("/resources")
 def documentation():

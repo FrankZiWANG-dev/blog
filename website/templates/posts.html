@@ -18,6 +18,9 @@
                             <p> {{ inner_element.date.strftime('%Y-%m-%d') }}</p>
                         </div>
                         <hr class='border-black m-2'>
+                        <div>
+                            <img src={{inner_element.image}} alt='banner'>
+                        </div>
                         <div class='post-content text-justify'>
                         {{ inner_element.content[0:200]}}...
                         </div>

@@ -2,7 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = './static/src/images'
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'pdf'}
 db = SQLAlchemy()
 DB_NAME = "database.db"
 

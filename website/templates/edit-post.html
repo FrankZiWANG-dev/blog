@@ -2,7 +2,7 @@
 </div>
 
 <div id='content-posts' class='w-8/10 mt-10 mr-auto ml-auto'>
-  <h3 class='text-3xl font-bold text-center mb-5'>Create new post</h3>
+  <h3 class='text-3xl font-bold text-center mb-5'>Edit the post</h3>
     <form method="POST">  
         <div class='m-3'>
           <label for="title">Title: </label>
@@ -10,7 +10,7 @@
             type="text"
             id="title"
             name="title"
-            placeholder="Title"
+            placeholder={{former_title}}
           />
         </div>
         <div class='m-3'>
@@ -19,7 +19,7 @@
             type="text"
             id="content"
             name="content"
-            placeholder="Type in the content of the post"
+            placeholder={{former_content}}
           />
         </div>
         <div class='m-3'>
@@ -28,11 +28,11 @@
             type="file"
             id="image"
             name="image"
-            placeholder="Select an image"
+            placeholder={{former_image}}
           />
         </div>
         <div class='flex mt-10 justify-center gap-5'>
-          <button class='bg-green-300 p-2 border-black border-2 rounded-md' type="submit">Submit</button>
+          <button class='bg-green-300 p-2 border-black border-2 rounded-md' type="submit">Edit</button>
           <a class='bg-red-300 p-2 border-black border-2 rounded-md' href='/dashboard'>Cancel</a>
         </div>
     </form>

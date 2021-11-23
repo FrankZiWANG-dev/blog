@@ -1,2 +1,37 @@
-DASHBOARD
-<a href='/new-post'>New post</a>
+{% include "nav.html" %}
+</div>
+<div id='content-posts' class='w-8/12 flex flex-col items-center text-center mt-10'>
+    <div class='mb-5'>
+        <h1 class='text-3xl font-bold'>Dashboard</h1>
+        <h2 class='text-xl font-semibold'> Content management (admin only)</h2>
+    </div>
+    <div class='w-10/12 m-5 bg-white p-5 border-black border-2 rounded-md'>
+        <h3 class='font-semibold'>Add content</h3>
+        <hr class='border-1 border-black'>
+        <div class='flex justify-center mt-3 gap-10'>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/new-post'>New post</a>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/new-link'>New resource</a>
+        </div>
+    </div>
+    <div class='w-10/12 m-5 bg-white p-5 border-black border-2 rounded-md'>
+        <h3 class='font-semibold'>Update content</h3>
+        <hr class='border-1 border-black'>
+        <div class='flex justify-center mt-3 gap-10'>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/edit-posts'>Edit a post</a>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/edit-links'>Edit a resource</a>
+        </div>
+    </div>
+    <div class='w-10/12 m-5 bg-white p-5 border-black border-2 rounded-md'>
+        <h3 class='font-semibold'>Delete content</h3>
+        <hr class='border-1 border-black'>
+        <div class='flex justify-center mt-3 gap-10'>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/delete-posts'>Delete a post</a>
+            <a class='border-2 border-gray-400 p-1 rounded-md' href='/delete-links'>Delete a resource</a>
+        </div>
+    </div>
+    
+    
+</div>
+</div>
+</body>
+</html>
