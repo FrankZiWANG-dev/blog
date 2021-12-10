@@ -1,0 +1,19 @@
+
+            {% include "nav.html" %}
+        </div>
+        <div id='content-posts' class='w-8/12 flex flex-col gap-10 m-10'>
+            <div>
+                <h1 class='text-3xl font-bold'>{{post.title}}</h1>
+                <h2 class='text-lg italic'>Post n°{{post.id}} ( published on {{post.date.strftime('%d/%m/%Y')}} )</h2>
+            </div>
+            <div>
+                {{post.content}}
+            </div>
+            
+            <div class='flex w-4/6 justify-between'>
+                <a href="/posts"> Return to posts </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

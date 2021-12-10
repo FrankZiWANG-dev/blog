@@ -10,15 +10,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
-    
+    <script>
+        let number=0
+        function hamburger(){
+            document.getElementById('vertical-menu').setAttribute('class', 'w-24 h-full pl-3 pr-6 md:max-w-xs md:w-4/12 md:pl-5 md:text-2xl');
+            document.getElementById('vertical-menu').setAttribute('style', 'background-color: #10a89b; border-right: solid #473622 2px;');
+            document.getElementById('nav').removeAttribute('style', 'display: none;');
+            number++;
+            if (number == 2){
+            document.getElementById('vertical-menu').setAttribute('class', 'mr-0 md:text-2xl');
+            document.getElementById('vertical-menu').setAttribute('style', 'border-right: solid #473622 0px;');
+            document.getElementById('nav').setAttribute('style', 'display: none;');
+            number = 0;
+            }
+        }
+    </script>
+
     <title>Ali La Psy</title>
 </head>
-<body style="font-family: 'Baloo 2', cursive;">
+<body style="font-family: 'Baloo 2', cursive;" class='h-screen'>
     <div id='container' style='background-color: #FCF5E5; border: double #473622 5px;' class='flex h-full w-full'>
-        <div id='vertical-menu' style='background-color: #10a89b; color:#ebeebd; border-right: solid #473622 2px;' class='h-screen w-4/12 pl-5'>
-
-            <nav class='flex flex-col gap-10' >
-                <video width='160' autoplay muted loop>
+       
+        <div id='vertical-menu' class='md:text-2xl' >            
+            <div class='flex flex-col gap-2 ml-3 mb-5'>
+                <i class="fas fa-bars text-md text-black ml-3 mt-3" onclick=hamburger()></i>
+                <p class="text-black font-bold"> Menu </p>
+            </div>
+            <nav id='nav' class='flex flex-col gap-10' style='display: none;'>    
+                <video autoplay muted loop>
                     <source src="./static/src/images/logo.mp4" type="video/mp4">
                 </video>
                 <a href='/'><i class="fas fa-home"></i> Home</a>

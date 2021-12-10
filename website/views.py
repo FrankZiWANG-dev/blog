@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .models import Post, Link
 from . import db
+from flask_login import login_required, current_user
 views = Blueprint("views", __name__)
 
 
+@login_required
 
 @views.route("/")
 @views.route("/home")
@@ -40,6 +42,13 @@ def posts():
         next_page = "posts?page="+str(next)
 
     return render_template("posts.html", posts_by_page = posts_by_page, page = page, previous_page = previous_page, next_page = next_page)
+
+@views.route("/post")
+def detailed_post():
+    ID= request.args.get('id', type=int)
+    post = Post.query.filter_by(id=ID).first()
+
+    return render_template("detailed-post.html", post = post)
 
 @views.route("/new-post", methods=["GET", "POST"])
 def new_post():
@@ -81,12 +90,12 @@ def edit_post():
     return render_template("edit-post.html", former_title=post.title, former_content=post.content, former_image=post.image)
 
 @views.route("/resources")
-def documentation():
+def resources():
     links = Link.query.all()
     links.reverse()
     grouped_links = []
-    for x in range(0, len(posts), 3):
-        chunk_links = [posts[x:x+3]]
+    for x in range(0, len(links), 3):
+        chunk_links = [links[x:x+3]]
         grouped_links.insert(1, chunk_links)
 
     page_links = request.args.get('page', default = 1, type = int)
@@ -94,20 +103,20 @@ def documentation():
 
     previous_links = page_links-1
     if previous_links == 0:
-        previous_page_links = 'links?page='+str(page_links)
+        previous_page_links = 'resources?page='+str(page_links)
     else:
-        previous_page_links = "links?page="+str(previous_links)
+        previous_page_links = "resources?page="+str(previous_links)
 
     next_links = page_links+1
     if next_links > len(grouped_links):
-        next_page_links = 'links?page='+str(page_links)
+        next_page_links = 'resources?page='+str(page_links)
     else:
-        next_page_links = "links?page="+str(next)
+        next_page_links = "resources?page="+str(next)
 
-    return render_template("documentation.html", page_links = page_links, links_by_page = links_by_page, previous_page_links = previous_page_links, next_page_links = next_page_links)
+    return render_template("resources.html", page_links = page_links, links_by_page = links_by_page, previous_page_links = previous_page_links, next_page_links = next_page_links)
 
-@views.route("/new-link", methods=["GET", "POST"])
-def new_link():
+@views.route("/new-resource", methods=["GET", "POST"])
+def new_resource():
     if request.method == 'POST':
         title = request.form.get('title')
         text = request.form.get('text')
@@ -118,7 +127,7 @@ def new_link():
         db.session.commit()
         return redirect(url_for('auth.dashboard'))
 
-    return render_template("new-link.html")
+    return render_template("new-resource.html")
 
 @views.route("/contact")
 def contact():

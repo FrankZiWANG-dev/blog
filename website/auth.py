@@ -25,6 +25,7 @@ def login():
     return render_template("login.html")
 
 @auth.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
 
@@ -36,17 +37,17 @@ def logout():
 
 
 
-@auth.route('/sign-up', methods=['GET', 'POST'])
-def sign_up():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+# @auth.route('/sign-up', methods=['GET', 'POST'])
+# def sign_up():
+#     if request.method == 'POST':
+#         username = request.form.get('username')
+#         password = request.form.get('password')
         
-        new_user = User(username=username, password=generate_password_hash(password, method='sha256'))
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user, remember=True)
-        flash('Account created!', category='success')
-        return redirect(url_for('views.dashboard'))
+#         new_user = User(username=username, password=generate_password_hash(password, method='sha256'))
+#         db.session.add(new_user)
+#         db.session.commit()
+#         login_user(new_user, remember=True)
+#         flash('Account created!', category='success')
+#         return redirect(url_for('views.dashboard'))
 
-    return render_template("sign_up.html")
+#     return render_template("sign_up.html")
